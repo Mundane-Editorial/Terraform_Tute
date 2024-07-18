@@ -1,0 +1,3 @@
+variable Users {
+    type = list
+}
