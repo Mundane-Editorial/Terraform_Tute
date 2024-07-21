@@ -1,0 +1,46 @@
+<h1> What is terraform? </h1>
+
+Terraform is an open-source Infrastructure as Code (IaC) tool developed by HashiCorp, designed to automate the provisioning and 
+management of infrastructure across various cloud providers and services. It allows users to define their infrastructure requirements 
+in a declarative configuration language, enabling consistent and repeatable deployments.
+
+
+How Terraform Works????
+
+* Core Components
+
+Terraform operates through two main components:
+Terraform Core: This is the central part of Terraform that manages the lifecycle of infrastructure. It reads user-defined configurations, 
+compares them to the current state of the infrastructure, and determines the necessary actions to achieve the desired state. This process
+ involves creating, updating, or deleting resources as needed.
+
+Terraform Providers: Providers are plugins that enable Terraform to interact with various infrastructure platforms, such as AWS, Azure, or
+ Kubernetes. Each provider exposes a set of resources and data sources that Terraform can manage. Providers communicate with Terraform Core
+  via Remote Procedure Calls (RPC), allowing Terraform to automate tasks across different services seamlessly.
+Workflow Steps
+
+A typical Terraform workflow consists of the following steps:
+Write: Users define their infrastructure as code using HashiCorp Configuration Language (HCL). This includes specifying resources, their 
+configurations, and dependencies.
+
+Plan: Terraform generates an execution plan by comparing the desired state (as defined in the configuration files) with the current state 
+of the infrastructure. This plan outlines the changes that will be made, such as adding or removing resources.
+
+Apply: After reviewing the plan, users can apply the changes. Terraform executes the necessary actions to align the actual infrastructure
+with the desired configuration.
+
+
+State Management
+Terraform maintains a state file that represents the current state of the infrastructure. This state file is crucial for tracking resource 
+changes and managing dependencies. It allows Terraform to understand what resources exist and how they relate to one another, enabling accurate 
+planning and execution of changes.
+
+
+Multi-Cloud and Custom Deployments One of Terraform's key advantages is its ability to manage resources across multiple cloud providers 
+simultaneously. This capability allows teams to use a single tool and language to provision and manage infrastructure, regardless of the
+ underlying platform. Additionally, users can create custom providers to integrate with internal tools or other APIs, further extending 
+ Terraform's functionality.
+
+ 
+In summary, Terraform simplifies infrastructure management by allowing users to define their environments as code, automating the provisioning
+ process, and providing a consistent approach to managing resources across various platforms.
