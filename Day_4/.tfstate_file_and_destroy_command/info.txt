@@ -1,0 +1,5 @@
++ to destroy all resources at once, use command "terraform destroy"
+|
++ your .tfstate file will become empty and all the resources will be destroyed
+
+>> .tfstate file keeps track of all the resources used in your terraform file in json format
