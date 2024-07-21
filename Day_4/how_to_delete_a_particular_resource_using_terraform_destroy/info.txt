@@ -1,0 +1,1 @@
++ in order to destroy a particular resource you'll use :  "terraform destroy --target resource_type.resourcename"
