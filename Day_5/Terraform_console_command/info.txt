@@ -1,0 +1,2 @@
+in order to debug and for the puspose of knowing values of the variables you can use, "terraform console" in command 
+>> then a new terminal will be created where you have to write,  "var.variable_name" command which will show the value of that particular variable 
