@@ -1,0 +1,4 @@
+these all files contains the process to create an ec2 instance using instance
+>> after executing "terraform apply" command, resources will be created
+
+>> in order to delete all resources, "terraform destroy" command is used 
