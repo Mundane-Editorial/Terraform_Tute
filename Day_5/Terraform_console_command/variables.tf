@@ -1,8 +1,8 @@
 variable "github_token" {
-  
+
 }
 
-variable "name" {   
+variable "name" {
   default = "Mundane Editorial"
 }
 

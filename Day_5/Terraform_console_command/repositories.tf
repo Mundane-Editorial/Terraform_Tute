@@ -1,7 +1,7 @@
 resource "github_repository" "terraform_test_repo" {
-  name = "terraform_test_repo"
+  name       = "terraform_test_repo"
   visibility = "private"
-  auto_init = true
+  auto_init  = true
 }
 
 
