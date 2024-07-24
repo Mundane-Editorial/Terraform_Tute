@@ -1,0 +1,62 @@
+The terraform output command in Terraform is used to extract the output values defined in your Terraform configuration. Outputs are a way to expose information from your Terraform configurations, which can be useful for passing data between different configurations or for use in scripts.
+
+Usage
+The basic syntax for the terraform output command is:
+
+**bash**
+terraform output [options] [NAME]
+
+
+**Purpose**
+Expose Information:
+
+Outputs allow you to expose specific values from your Terraform configurations. These can include details like IP addresses, DNS names, or any other information you need to be easily accessible after the infrastructure is provisioned.
+Integration:
+
+Outputs can be used to integrate Terraform with other systems or scripts. For example, you might use the output values in a CI/CD pipeline or another automation tool.
+Debugging:
+
+Outputs can help with debugging and verification by making it easy to see important values without digging through the state file.
+Example
+Here's a simple example of how you might use the terraform output command:
+
+Define Outputs in Configuration:
+
+In your main.tf file or another Terraform configuration file, define some output values:
+
+hcl
+Copy code
+output "instance_ip" {
+  value = aws_instance.my_instance.public_ip
+}
+
+output "db_url" {
+  value = aws_db_instance.my_database.endpoint
+}
+Run Terraform Commands:
+
+Initialize your Terraform workspace, apply the configuration, and then use the terraform output command:
+
+bash
+Copy code
+# Initialize the Terraform working directory
+terraform init
+
+# Apply the configuration
+terraform apply
+
+# Display all output values
+terraform output
+
+# Display a specific output value
+terraform output instance_ip
+Options
+Some common options for terraform output include:
+
+-state: Path to the state file from which to read output values.
+-json: Format the output values as a JSON object.
+-no-color: Disable color output.
+When to Use
+After Applying Configuration: After running terraform apply, use terraform output to view the results and outputs defined in your configuration.
+Integration with Scripts: Use terraform output to integrate Terraform with other tools or scripts that need information about your infrastructure.
+Troubleshooting and Debugging: Use outputs to quickly access important values for troubleshooting and verifying your configuration.
