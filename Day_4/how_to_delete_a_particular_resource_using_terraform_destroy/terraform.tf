@@ -12,7 +12,7 @@ resource "github_repository" "terraform-first-repo" {
   visibility = "private"
   // to create a readme file, you'll use,
   auto_init = true
-}
+} 
 
 resource "github_repository" "terraform-second-repo" {
   name        = "second_repo_from_terraform"
