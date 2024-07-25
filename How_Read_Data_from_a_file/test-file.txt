@@ -1,0 +1,1 @@
+this is an text file used to be read by the terraform file.
