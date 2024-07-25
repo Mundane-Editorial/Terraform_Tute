@@ -1,0 +1,10 @@
+in order to generate a new key for your resource, you'll use,
+--    ssh-keygen -t rsa
+
+ssh-keygen: This is the command used to generate, manage, and convert authentication keys for SSH.
+
+-t: This option specifies the type of key to create.
+
+rsa: This specifies the type of key to create as RSA (Rivest-Shamir-Adleman), which is one of the most widely used public-key cryptosystems.
+
+
