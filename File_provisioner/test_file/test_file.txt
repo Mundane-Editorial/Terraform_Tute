@@ -1,0 +1,5 @@
+test file for terraform provisioners :: used to copy a file form your local device to remote instance.
+
+
+
+" SEE YOU IN EC2 INSTANCE DUDE ^_-" 

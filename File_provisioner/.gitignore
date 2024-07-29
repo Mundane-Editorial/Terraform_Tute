@@ -1,0 +1,4 @@
+ssh_key
+.terraform
+.terraform.lock.hcl
+terraform.tfvars
