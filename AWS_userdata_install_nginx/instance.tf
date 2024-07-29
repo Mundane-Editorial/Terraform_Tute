@@ -7,6 +7,7 @@ resource "aws_instance" "web" { // creating aws instance
     Name = "first_tf_instance",
   }
   user_data = file("${path.module}/script.sh")
+  
 
 }
 
