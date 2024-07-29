@@ -6,7 +6,7 @@ resource "aws_instance" "web" { // creating aws instance
   tags = {
     Name = "first_tf_instance",
   }
-  user_data = file("${path.module}/script.sh")
+  user_data = file("${path.module}/dockerscript.sh")
   
   //Terraform Provisioners :: used to copy a file from local device to remote instance 
   # there are 3 types of provisioners :: 
