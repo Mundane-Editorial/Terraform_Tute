@@ -14,8 +14,11 @@ resource "aws_instance" "web" { // creating aws instance
   // 2. local-exec
   // 3. remote-exec
   provisioner "file" {
-    source      = "./test_file/test_file.txt"
-    destination = "/tmp/test_file.txt"
+    # source      = "./test_file/test_file.txt"
+    # destination = "/tmp/test_file.txt"
+
+    source = "./openshift"
+    destination = "/tmp/openshift"
 
     connection {
       type = "ssh"
