@@ -17,7 +17,7 @@ resource "aws_instance" "web" { // creating aws instance
     # source      = "./test_file/test_file.txt"
     # destination = "/tmp/test_file.txt"
 
-    source = "./openshift"
+    source = "./openshift/openshift.tar"
     destination = "/tmp/openshift"
 
     connection {
