@@ -37,21 +37,31 @@ resource "aws_instance" "web" { // creating aws instance
     # }
   }
 
-  # provisioner "file" {
-  #   content = "this is the test provisioner string text content"
-  #   destination = "/tmp/content.md"
-  #   # connection {
-  #   #   type = "ssh"
-  #   #   user = "ubuntu"
-  #   #   private_key = file("${path.module}/ssh_key/id_rsa")
-  #   #   host = "${self.public_ip}"
-  #   # }
-  # }
+  provisioner "file" {
+    content = "this is the test provisioner string text content"
+    destination = "/tmp/content.md"
+    # connection {
+    #   type = "ssh"
+    #   user = "ubuntu"
+    #   private_key = file("${path.module}/ssh_key/id_rsa")
+    #   host = "${self.public_ip}"
+    # }
+  }
 
-  # // these provisioners will run according to the order how they are written 
+  // these provisioners will run according to the order how they are written 
 
-  # provisioner "local-exec" {    // local-exec will run the commands in your local machine(instance)
-  #   command = "echo ${self.public_ip} > /tmp/mypublicip.txt"
-  # }
+  provisioner "local-exec" {    // local-exec will run the commands in your local machine(instance)
+    working_dir = "/tmp"     // If provided, specifies the working directory where command will be executed. 
+    //It can be provided as as a relative path to the current working directory or as an absolute path. The directory must exist.
+    command = "echo ${self.public_ip} > /tmp/mypublicip.txt"
+  }
 
+  provisioner "local-exec" {
+    interpreter = [ 
+      "/usr/local/bin/python3", "-C"
+     ]
+     command = "print('Hello world')"
+  }
+
+  // similarly there is remote-exec too .. :: find its working by yourself
 }
