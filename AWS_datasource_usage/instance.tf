@@ -1,0 +1,89 @@
+data "aws_ami" "ubuntu"{
+  most_recent = true
+  owners = ["099720109477"]
+
+  #name = ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-20240701.1
+  #root device type = ebs
+  #virtualization type = 
+
+  filter {
+    name = "name"
+    values = ["${var.image_id}"]
+  }
+  filter {
+    name = "root-device-type"
+    values = ["ebs"]
+  }
+  filter {
+    name = "virtualization-type"
+    values = ["hvm"]
+  }
+}
+
+resource "aws_instance" "web" { // creating aws instance 
+  ami                    = var.image_id
+  instance_type          = "t2.micro"
+  key_name               = aws_key_pair.tf_key.key_name           // attaching key pair
+  vpc_security_group_ids = ["${aws_security_group.allow_tls.id}"] // attaching security group
+  tags = {
+    Name = "first_tf_instance",
+  }
+  user_data = file("${path.module}/dockerscript.sh")
+
+  //Terraform Provisioners :: used to copy a file from local device to remote instance 
+  # there are 3 types of provisioners :: 
+  // 1. fILE
+  // 2. local-exec
+  // 3. remote-exec
+
+  connection { // putting connection block here will make it global and will be assigned to all the provisioner blocks whenever needed.
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = file("${path.module}/ssh_key/id_rsa")
+    host        = self.public_ip
+  }
+
+  provisioner "file" {
+    # source      = "./test_file/test_file.txt"
+    # destination = "/tmp/test_file.txt"
+
+    source      = "./openshift/openshift.tar"
+    destination = "/tmp/openshift/"
+
+    # connection {
+    #   type = "ssh"
+    #   user = "ubuntu"
+    #   private_key = file("${path.module}/ssh_key/id_rsa")
+    #   # host = "${aws_instance.web.public_ip}"   this part will create an loop as it is dependent on itself so, we'll use
+    #   host = "${self.public_ip}"
+    # }
+  }
+
+  provisioner "file" {
+    content = "this is the test provisioner string text content"
+    destination = "/tmp/content.md"
+    # connection {
+    #   type = "ssh"
+    #   user = "ubuntu"
+    #   private_key = file("${path.module}/ssh_key/id_rsa")
+    #   host = "${self.public_ip}"
+    # }
+  }
+
+  // these provisioners will run according to the order how they are written 
+
+  provisioner "local-exec" {    // local-exec will run the commands in your local machine(instance)
+    working_dir = "/tmp"     // If provided, specifies the working directory where command will be executed. 
+    //It can be provided as as a relative path to the current working directory or as an absolute path. The directory must exist.
+    command = "echo ${self.public_ip} > /tmp/mypublicip.txt"
+  }
+
+  provisioner "local-exec" {
+    interpreter = [ 
+      "/usr/local/bin/python3", "-C"
+     ]
+     command = "print('Hello world')"
+  }
+
+  // similarly there is remote-exec too .. :: find its working by yourself
+}
